@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+    $conn = new mysqli('localhost','root','','XemPhim');
+    mysqli_query($conn,'SET NAMES UTF8');
+    // Check connection
+    if(!$conn){
+        die("Kết nối thất bại". mysqli_connect_error($conn));
+    }
+    $sql = "SELECT * FROM theloai";
+    $result = $conn->query($sql);
+?>
 <head>
 	<meta charset="utf-8">
 	<title>Thế giới phim truyện</title>
@@ -29,36 +39,18 @@
 				<li><a href="#">Thể Loại</a>
 					<ul>
 						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<li style="padding: 8px 15px">							
-									<a href="#">Thể loại 1</a>
-								</li>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<li style="padding: 8px 15px">							
-									<a href="#">Thể loại 1</a>
-								</li>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<li style="padding: 8px 15px">							
-									<a href="#">Thể loại 1</a>
-								</li>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<li style="padding: 8px 15px">							
-									<a href="#">Thể loại 1</a>
-								</li>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<li style="padding: 8px 15px">							
-									<a href="#">Thể loại 1</a>
-								</li>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<li style="padding: 8px 15px">							
-									<a href="#">Thể loại 1</a>
-								</li>
-							</div>
+							<?php
+							if ($result && $result->num_rows > 0) {
+        					// nếu có thì tiến hành lặp để in ra dữ liệu           
+       							while ($row = $result->fetch_assoc()) {	
+       								echo "<div class='col-xs-12 col-sm-12 col-md-3'>
+       										<li style='padding: 8px 15px'>
+       											<a href=#>".$row['TenTL']."</a>
+       										</li>
+       									</div>";
+       							}
+       						}
+							?>
 						</div>
 					</ul>
 				</li>	
@@ -68,11 +60,3 @@
 			<div class="clear"></div>
 		</div>
 	</div>
-	<?php
-	    $conn = new mysqli('localhost','root','','XemPhim');
-	    mysqli_query($conn,'SET NAMES UTF8');
-	    // Check connection
-	    if(!$conn){
-	        die("Kết nối thất bại". mysqli_connect_error($conn));
-	    }
-    ?>

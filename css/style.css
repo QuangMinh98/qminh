@@ -102,7 +102,7 @@ a:hover{
 	top: 42px;
 	left: 0px;
 	display: none;
-	width: 500px;
+	width: 700px;
 	z-index: 3;
 	opacity: 0.8;
 }
@@ -111,7 +111,8 @@ a:hover{
 .menu>ul>li>ul>li>a{
 	text-decoration: none;
 	color: white;
-	font: 14px/1.5 tahoma,arial,sans-serif
+	font-family: 'Montserrat Alternates',sans-serif;
+	font-size: 15px;
 }
 
 .menu>ul>li:hover>ul{
@@ -125,7 +126,7 @@ a:hover{
 	color: black;
 }
 .menu>ul>li>ul>li{
-	padding: 5px 10px;
+
 }
 .menu>ul>li>ul>li:hover{
 	background: white;
@@ -309,6 +310,14 @@ iframe{
 	overflow: hidden;
 }
 
+.frame h4{
+	font-family: 'Montserrat Alternates',sans-serif;
+	font-size: 25px;
+	color: white;
+	padding: 5px 5px;
+	text-align: center;
+	font-weight: bold;
+}
 
 
 

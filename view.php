@@ -11,6 +11,14 @@
 		<div class="item">
 			<div class="frame">
 				<?php
+					$sql2="SELECT * FROM phim WHERE MaPhim='".$_GET['id']."'";
+					$result2 = $conn->query($sql2);
+					if ($result2 && $result2->num_rows > 0) {
+        			// nếu có thì tiến hành lặp để in ra dữ liệu           
+       					 while ($row2 = $result2->fetch_assoc()) {
+							echo "<h4>".$row2['TenPhim']." Tập ".$_GET['ep']."</h4>";
+						}
+					}
 					if ($result1 && $result1->num_rows > 0) {
         			// nếu có thì tiến hành lặp để in ra dữ liệu           
        					 while ($row1 = $result1->fetch_assoc()) {
