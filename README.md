@@ -11,6 +11,7 @@
   * Lưu lại phim đã xem.
   * Đăng nhập.
   * Lưu lại những bộ phim yêu thích.
+  
 
 - Mục đích của bài toán:
   * Giúp người dùng có xem được những bộ phim yêu thích miến phí.
