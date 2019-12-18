@@ -4,7 +4,7 @@
 
 -Website xem phim trực tuyến sử dụng framework php.
 
--Công dụng:
+* Công dụng:
   * Tìm kiếm theo tên phim.
   * Tìm kiếm theo thể loại phim.
   * Xem phim theo tập.
@@ -12,7 +12,7 @@
   * Đăng nhập.
   * Lưu lại những bộ phim yêu thích.
 
-- Mục đích của bài toán:
+* Mục đích của bài toán:
   * Giúp người dùng có xem được những bộ phim yêu thích miến phí.
   * Có thể tìm kiếm phim 1 cách dễ dàng.
  
