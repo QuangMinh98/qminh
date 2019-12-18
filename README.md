@@ -1,5 +1,5 @@
-#                                                     ** WEBSITE XEM PHIM TRỰC TUYẾN
+#                                                      WEBSITE XEM PHIM TRỰC TUYẾN
 
-#**I.Giới Thiệu. 
+**I.Giới Thiệu. 
 
--Ngày nay khi thời đại công nghệ thông tin ngày càng phát triển
+-
