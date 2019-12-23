@@ -52,3 +52,9 @@
    * TenTapPhim : tên của tập phim.
    * MaPhim : mã của phim.
    * Link : link dẫn đến video của tập phim.
+   
+ * Bảng tài khoản :
+   * id : tên đăng nhập
+   * password : mật khẩu
+   
+ ![Atom](https://atom.io/assets/packages-d16d6cc46fd0cf01842409577e782b74.gif)
