@@ -64,11 +64,14 @@
  ## Bước 1:
  
 * Cài đặt và khởi động Xampp
+
 ![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/xampp.png)
 
 ## Bước 2:
 
 * Copy đường dẫn
+
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/copy.png)
 
 * Clone project vào một folder bất kỳ trong htdoc
 
