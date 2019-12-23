@@ -75,4 +75,11 @@
 
 * Clone project vào một folder bất kỳ trong htdoc
 
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/copy.png)
+
+## Bước 3:
+
+* Mở trình duyệt và truy cập theo đường dẫn "http://localhost/Tên thư mục chứa project/index.php"
+
+# IV. Một số hình ảnh của website.
 
