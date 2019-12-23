@@ -75,7 +75,7 @@
 
 * Clone project vào một folder bất kỳ trong htdoc
 
-![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/copy.png)
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/clone.png)
 
 ## Bước 3:
 
