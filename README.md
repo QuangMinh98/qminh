@@ -58,3 +58,18 @@
    * password : mật khẩu
    
  ![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/csdl.png)
+ 
+ # III.Cài đặt.
+ 
+ ## Bước 1:
+ 
+* Cài đặt và khởi động Xampp
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/xampp.png)
+
+## Bước 2:
+
+* Copy đường dẫn
+
+* Clone project vào một folder bất kỳ trong htdoc
+
+
