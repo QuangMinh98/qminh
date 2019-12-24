@@ -3,6 +3,10 @@
 	$sql = "SELECT * FROM phim WHERE MaPhim = '".$_GET['id']."'";
                 //run câu truy vấn
     $result = $conn->query($sql);
+    $sql1= "SELECT theloaiphim.MaTL,theloai.TenTL 
+    		FROM theloai,theloaiphim 
+    		WHERE theloai.MaTL = theloaiphim.MaTL AND theloaiphim.MaPhim='".$_GET['id']."'";
+    $result1 = $conn->query($sql1);
     if ($result && $result->num_rows > 0) {
         // nếu có thì tiến hành lặp để in ra dữ liệu           
         while ($row = $result->fetch_assoc()) {
@@ -28,8 +32,14 @@
 				<div class="info">
 					<div class="row" style="padding: 5px 15px;">
 						<h5>Thể Loại : </h5>
-						<h5><a href="#">Hành Động,</a></h5>
-						<h5><a href="#">Siêu Nhiên</a></h5>
+						<?php
+							if ($result1 && $result1->num_rows > 0) {
+						        // nếu có thì tiến hành lặp để in ra dữ liệu           
+						        while ($row1 = $result1->fetch_assoc()) {
+						        	echo "<h5><a href=theloai.php?id=".$row1['MaTL'].">".$row1['TenTL'].",</a></h5>";
+						        }
+						    }
+						?>
 					</div>
 					<div class="row" style="padding: 5px 15px;">
 						<h5>Hãng SX : </h5>
@@ -40,7 +50,7 @@
 					<div class="row" style="padding: 5px 15px;">
 						<h5>Năm SX : </h5>
 						<?php
-						echo "<h5><a href=#>".$row['Nam']."</a></h5>";
+						echo "<h5><a href=nam.php?nam=".$row['Nam'].">".$row['Nam']."</a></h5>";
 						?>
 					</div>
 					<div class="row" style="padding: 5px 15px;">
