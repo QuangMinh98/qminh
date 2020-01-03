@@ -19,7 +19,7 @@
 			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
 		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
 		    <li><a href="admin-nam.php" class="active">Năm</a></li>
-		    <li><a href="#" class="active">Tài Khoản</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
 		    <li><a href="#" class="active">Trang Người Dùng</a></li>
 		</ul>
 	</div>
@@ -32,11 +32,12 @@
 					<th>Tên Phim</th>
 					<th>Năm SX</th>
 					<th>Hãng SX</th>
+					<th>Tình Trạng</th>
 					<th>Image</th>
 					<th>Background Image</th>
 					<th>Edit</th>
 					<th>Delete</th>
-					<th>Thêm tập</th>
+					<th>Thể Loại</th>
 				</tr>
 				<?php
 	            if ($result && $result->num_rows > 0){
@@ -47,6 +48,7 @@
 	          		<td><a href="admin-chitiet.php?id=<?php echo $row['MaPhim']; ?>"><?php echo $row['TenPhim']; ?></a></td>
 	          		<td><?php echo $row['Nam']; ?></td>
 	          		<td><?php echo $row['HangSX']; ?></td>
+	          		<td><?php echo $row['TinhTrang']; ?></td>
 	          		<td><?php echo "<img style='width:60px; height:80px; ' src=".$row['Image']." />"; ?></td>
 	          		<td><?php echo "<img style='width:80px; height:45px; ' src=".$row['back_image']." />"; ?></td>
 	          		<td><a href="admin-edit-film.php?id=<?php echo $row['MaPhim']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>

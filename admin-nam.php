@@ -43,11 +43,11 @@
 	</div>
 	<div class="main">
 		<h2>Danh sách năm</h2>
-		<a href="admin-add-theloai.php"><button>Thêm năm</button> </a>
+		<a href="admin-add-nam.php"><button>Thêm năm</button> </a>
 			<table class="value">
 				<tr>
 					<th>Năm</th>
-					<th>Edit</th>
+					<th>Delete</th>
 				</tr>
 				<?php
 	            if ($result && $result->num_rows > 0){

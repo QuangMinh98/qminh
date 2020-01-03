@@ -55,7 +55,7 @@
 					</div>
 					<div class="row" style="padding: 5px 15px;">
 						<h5>Tình Trạng : </h5>
-						<h5><a href="#">Hoàn Thành</a></h5>
+						<h5><a href="#"><?php echo $row['TinhTrang']; ?></a></h5>
 					</div>
 					<div class="row" style="padding: 5px 15px;">
 						<?php

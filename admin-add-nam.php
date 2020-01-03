@@ -11,16 +11,15 @@
 			$('#btn').click(function(){
 				console.log("thành công");
 				var id = $('#id').val();
-				var pass = $('#pass').val();
-				var query = "insert into taikhoan values('"+id+"','"+pass+"')";
-				var test = "select count(*) as SoLuong from taikhoan where id = '"+id+"'";
+				var query = "insert into namsx values("+id+")";
+				var test = "select count(*) as SoLuong from namsx where Nam = '"+id+"'";
 				$.ajax({
 					url: 'insert.php',
 					type: 'POST',
 					data: {query:query,test:test},
 					success:function(d){
 						alert(d);
-						window.location="admin-taikhoan.php";
+						window.location="admin-nam.php";
 					},
 					error:function(){
 						alert("Bị lỗi");
@@ -58,13 +57,11 @@
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Thêm Tài Khoản Mới</h2>
+		<h2 style="margin-bottom: 50px;"> Thêm Năm</h2>
 		<div class="wrapper">
 			<div class="info">
-				<h6 style="float: left; margin-right:10px;">Tên Đăng Nhập:</h6>
+				<h6 style="float: left; margin-right:10px;">Năm:</h6>
 				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text">
-				<h6 style="float: left; margin-right:10px">Mật Khẩu:</h6>
-				<input id="pass" style="float: left; margin-right: 80px;" type="text" >
 			</div>
 			<input id="btn" type="button" name="" value="Thêm">
 		</div>

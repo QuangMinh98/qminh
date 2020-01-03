@@ -1,3 +1,9 @@
+<?php
+	$conn = new mysqli('localhost','root','','XemPhim');
+    mysqli_query($conn,'SET NAMES UTF8');
+    $sql = "SELECT * FROM taikhoan WHERE id='".$_GET['id']."'";
+    $result = $conn->query($sql);
+?>
 <head>
 	<meta charset="utf-8">
 	<title>Thế giới phim truyện</title>
@@ -12,12 +18,11 @@
 				console.log("thành công");
 				var id = $('#id').val();
 				var pass = $('#pass').val();
-				var query = "insert into taikhoan values('"+id+"','"+pass+"')";
-				var test = "select count(*) as SoLuong from taikhoan where id = '"+id+"'";
+				var query = "update taikhoan set password='"+pass+"' where id='"+id+"'";
 				$.ajax({
-					url: 'insert.php',
+					url: 'update.php',
 					type: 'POST',
-					data: {query:query,test:test},
+					data: {query:query},
 					success:function(d){
 						alert(d);
 						window.location="admin-taikhoan.php";
@@ -60,13 +65,21 @@
 	<div class="main">
 		<h2 style="margin-bottom: 50px;"> Thêm Tài Khoản Mới</h2>
 		<div class="wrapper">
+			<?php
+				if ($result && $result->num_rows > 0){
+	              while($row = $result->fetch_assoc()){
+			?>
 			<div class="info">
 				<h6 style="float: left; margin-right:10px;">Tên Đăng Nhập:</h6>
-				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text">
+				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['id']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px">Mật Khẩu:</h6>
-				<input id="pass" style="float: left; margin-right: 80px;" type="text" >
+				<input id="pass" style="float: left; margin-right: 80px;" value="<?php echo $row['id']; ?> "  type="text" >
 			</div>
-			<input id="btn" type="button" name="" value="Thêm">
+			<?php
+				}
+			}
+			?>
+			<input id="btn" type="button" name="" value="Lưu">
 		</div>
 	</div>
 </body>

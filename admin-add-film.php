@@ -23,7 +23,8 @@
 				var backimg = $('#back-img').val();
 				var year = $('#year').val();
 				var review = $('#review').val();
-				var query = "insert into phim values('"+id+"','"+name+"',"+year+",'"+hang+"','"+review+"','"+img+"','"+backimg+"')";
+				var status = $('#tinhtrang').val();
+				var query = "insert into phim values('"+id+"','"+name+"',"+year+",'"+hang+"','"+review+"','"+img+"','"+backimg+"','"+status+"')";
 				var test = "select count(*) as SoLuong from phim where MaPhim = '"+id+"'";
 				$.ajax({
 					url: 'insert.php',
@@ -86,17 +87,25 @@
 				<input id="back-img" style="float: left; margin-left: 10px;" type="text" name="">
 				<img style="float: left; margin-left: 10px; width: 80px; height: 45px;" src="">
 				<h6 style="float: left; margin-left: 80px;">Năm SX:</h6>
-				<select id="year" style="float: left; margin-left: 10px;">
+			</div>
+			<div class="select">
+				<h6 style="float: left; margin-right: 10px;">Năm SX:</h6>
+				<select id="year" style="float: left; margin-right: 80px;">
 					<?php
-						if ($result1 && $result1->num_rows > 0){
-		              		while($row1 = $result1->fetch_assoc()){
-		              			if($row1['Nam'] == $row['Nam'])
-		              				echo "<option value='".$row1['Nam']."' selected>".$row1['Nam']."</option>";
-		              			else 
-		              				echo "<option value='".$row1['Nam']."'>".$row1['Nam']."</option>";
-		              		}
-		              	}
+					if ($result1 && $result1->num_rows > 0){
+	              		while($row1 = $result1->fetch_assoc()){
+	              			if($row1['Nam'] == $row['Nam'])
+	              				echo "<option value='".$row1['Nam']."' selected>".$row1['Nam']."</option>";
+	              			else 
+	              				echo "<option value='".$row1['Nam']."'>".$row1['Nam']."</option>";
+	              		}
+	              	}
 					?>
+				</select>
+				<h6 style="float: left; margin-right: 10px;">Tình Trạng:</h6>
+				<select id="tinhtrang" style="margin-right: 10px;">
+					<option value="Hoàn Thành">Hoàn Thành</option>
+					<option value="Đang Tiến Hành">Đang Tiến Hành</option>
 				</select>
 			</div> 
 			<div>

@@ -25,7 +25,8 @@
 				var backimg = $('#back-img').val();
 				var year = $('#year').val();
 				var review = $('#review').val();
-				var query = "update phim set TenPhim='"+name+"',Nam="+year+",HangSX='"+hang+"',NoiDung='"+review+"',Image='"+img+"',back_image='"+backimg+"' where MaPhim='"+id+"'";
+				var status = $('#tinhtrang').val();
+				var query = "update phim set TenPhim='"+name+"',Nam="+year+",HangSX='"+hang+"',NoiDung='"+review+"',Image='"+img+"',back_image='"+backimg+"',TinhTrang='"+status+"' where MaPhim='"+id+"'";
 
 				$.ajax({
 					url: 'update.php',
@@ -92,8 +93,10 @@
 				<h6 style="float: left; margin-left: 80px;">Ảnh Nền:</h6>
 				<input id="back-img" style="float: left; margin-left: 10px;" type="text"value="<?php echo $row['back_image']; ?> ">
 				<img style="float: left; margin-left: 10px; width: 80px; height: 45px;" src="">
-				<h6 style="float: left; margin-left: 80px;">Năm SX:</h6>
-				<select id="year" style="float: left; margin-left: 10px;">
+			</div>
+			<div class="select">
+				<h6 style="float: left; margin-right: 10px;">Năm SX:</h6>
+				<select id="year" style="float: left; margin-right: 80px;">
 					<?php
 					if ($result1 && $result1->num_rows > 0){
 	              		while($row1 = $result1->fetch_assoc()){
@@ -103,6 +106,17 @@
 	              				echo "<option value='".$row1['Nam']."'>".$row1['Nam']."</option>";
 	              		}
 	              	}
+					?>
+				</select>
+				<h6 style="float: left; margin-right: 10px;">Tình Trạng:</h6>
+				<select id="tinhtrang" style="margin-right: 10px;">
+					<?php
+						if($row['TinhTrang'] == "Hoàn Thành")
+	              				echo "<option value='Hoàn Thành' selected>Hoàn Thành</option>
+	              						<option value='Đang Tiến Hành'>Đang Tiến Hành</option>";
+	              			else 
+	              				echo "<option value='Hoàn Thành'>Hoàn Thành</option>
+	              					<option value='Đang Tiến Hành' selected>Đang Tiến Hành</option>";
 					?>
 				</select>
 			</div> 
