@@ -1,7 +1,7 @@
 <?php
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
-    $sql = "SELECT * FROM theloai";
+    $sql = "SELECT * FROM taikhoan";
     $result = $conn->query($sql);
 ?>
 <head>
@@ -46,19 +46,17 @@
 		<a href="admin-add-theloai.php"><button>Thêm thể loại mới</button> </a>
 			<table class="value">
 				<tr>
-					<th>Mã Thể Loại</th>
-					<th>Tên Thể Loại</th>
-					<th>Edit</th>
-					<th>Delete</th>
+					<th>Tên Đăng Nhập</th>
+					<th>Mật Khẩu</th>
 				</tr>
 				<?php
 	            if ($result && $result->num_rows > 0){
 	              while($row = $result->fetch_assoc()){
 	          	?>
 	          	<tr>
-	          		<td><?php echo $row['MaTL']; ?></td>
-	          		<td><?php echo $row['TenTL']; ?></td>
-	          		<td><a href="admin-edit-theloai.php?id=<?php echo $row['MaTL']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>
+	          		<td><?php echo $row['id']; ?></td>
+	          		<td><?php echo $row['password']; ?></td>
+	          		<td><a href="admin-edit-taikhoan.php?id=<?php echo $row['MaTL']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>
 	          		<td><a href="#"><img src="./Image/rubbish-bin.png" /></a></td>
 	          	</tr>
 	          	<?php

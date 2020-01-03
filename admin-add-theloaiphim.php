@@ -1,7 +1,9 @@
 <?php
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
-    $sql1 = "select * from namsx";
+    $sql = "select * from phim where MaPhim = '".$_GET['id']."'";
+    $result = $conn->query($sql);
+    $sql1 = "select * from theloai";
     $result1 = $conn->query($sql1);
 ?>
 <head>
@@ -17,20 +19,16 @@
 			$('#btn').click(function(){
 				console.log("thành công");
 				var id = $('#id').val();
-				var name = $('#name').val();
-				var hang = $('#hang').val();
-				var img = $('#image').val();
-				var backimg = $('#back-img').val();
-				var year = $('#year').val();
-				var review = $('#review').val();
-				var query = "insert into phim values('"+id+"','"+name+"',"+year+",'"+hang+"','"+review+"','"+img+"','"+backimg+"')";
-				var test = "select count(*) as SoLuong from phim where MaPhim = '"+id+"'";
+				var theloai = $('#theloai').val();
+				var query = "insert into theloaiphim values('"+id+"','"+theloai+"')";
+				var test = "select count(*) as SoLuong from theloaiphim where MaPhim = '"+id+"' and MaTL='"+theloai+"'";
 				$.ajax({
 					url: 'insert.php',
 					type: 'POST',
 					data: {query:query,test:test},
 					success:function(d){
 						alert(d);
+						window.location="admin-phim-theloai.php?id="+id;
 					},
 					error:function(){
 						alert("Bị lỗi");
@@ -68,44 +66,35 @@
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Thêm Phim Mới</h2>
+		<h2 style="margin-bottom: 50px;"> Thêm Thể Loại Phim Mới</h2>
 		<div class="wrapper">
+			<?php
+				if ($result && $result->num_rows > 0){
+	              while($row = $result->fetch_assoc()){
+			?>
 			<div class="info">
 				<h6 style="float: left; margin-right:10px;">Mã Phim:</h6>
-				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" name="">
+				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaPhim']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px">Tên Phim:</h6>
-				<input id="name" style="float: left; margin-right: 80px;" type="text" name="">
-				<h6 style="float:left ;margin-right: 10px;">Tên Hãng Sản Xuất:</h6>
-				<input id="hang" style="float: left;" type="text" name="">
+				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenPhim']; ?>" readonly>
 			</div>
+			<?php
+				}
+			}
+			?>
 			<div class="img">
-				<h6 style="float: left; margin-right: 10px;">Ảnh:</h6>
-				<input id="image"  style="float: left; margin-right: 10px;" type="text" name="">
-				<img style="float: left; width: 60px; height: 80px;" src="">
-				<h6 style="float: left; margin-left: 80px;">Ảnh Nền:</h6>
-				<input id="back-img" style="float: left; margin-left: 10px;" type="text" name="">
-				<img style="float: left; margin-left: 10px; width: 80px; height: 45px;" src="">
-				<h6 style="float: left; margin-left: 80px;">Năm SX:</h6>
-				<select id="year" style="float: left; margin-left: 10px;">
+				<h6 style="float: left; margin-right: 10px;">Thể Loại:</h6>
+				<select id="theloai" style="float: left; margin-left: 10px;">
 					<?php
-						if ($result1 && $result1->num_rows > 0){
-		              		while($row1 = $result1->fetch_assoc()){
-		              			if($row1['Nam'] == $row['Nam'])
-		              				echo "<option value='".$row1['Nam']."' selected>".$row1['Nam']."</option>";
-		              			else 
-		              				echo "<option value='".$row1['Nam']."'>".$row1['Nam']."</option>";
-		              		}
-		              	}
+					if ($result1 && $result1->num_rows > 0){
+	              		while($row1 = $result1->fetch_assoc()){
+	              			echo "<option value='".$row1['MaTL']."'>".$row1['TenTL']."</option>";
+	              		}
+	              	}
 					?>
 				</select>
 			</div> 
-			<div>
-				<h6 style="margin-left: 10%">Nội Dung: </h6>
-				<textarea id="review" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%"></textarea>
-			</div>
 			<input id="btn" type="button" name="" value="Thêm">
 		</div>
-		
-		
 	</div>
 </body>

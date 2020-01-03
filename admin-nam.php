@@ -1,7 +1,7 @@
 <?php
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
-    $sql = "SELECT * FROM theloai";
+    $sql = "SELECT * FROM namsx";
     $result = $conn->query($sql);
 ?>
 <head>
@@ -35,30 +35,26 @@
 		<h5>Menu</h5>
 		<ul>
 			<li><a href="admin-top.php" class="active">Phim</a></li>
-		    <li style="background: #0033ff ;"><a style="color: #fff;" href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="#" class="active">Năm</a></li>
+		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
+		    <li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Năm</a></li>
 		    <li><a href="#" class="active">Tài Khoản</a></li>
 		    <li><a href="#" class="active">Trang Người Dùng</a></li>
 		</ul>
 	</div>
 	<div class="main">
-		<h2>Danh sách thể loại</h2>
-		<a href="admin-add-theloai.php"><button>Thêm thể loại mới</button> </a>
+		<h2>Danh sách năm</h2>
+		<a href="admin-add-theloai.php"><button>Thêm năm</button> </a>
 			<table class="value">
 				<tr>
-					<th>Mã Thể Loại</th>
-					<th>Tên Thể Loại</th>
+					<th>Năm</th>
 					<th>Edit</th>
-					<th>Delete</th>
 				</tr>
 				<?php
 	            if ($result && $result->num_rows > 0){
 	              while($row = $result->fetch_assoc()){
 	          	?>
 	          	<tr>
-	          		<td><?php echo $row['MaTL']; ?></td>
-	          		<td><?php echo $row['TenTL']; ?></td>
-	          		<td><a href="admin-edit-theloai.php?id=<?php echo $row['MaTL']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>
+	          		<td><?php echo $row['Nam']; ?></td>
 	          		<td><a href="#"><img src="./Image/rubbish-bin.png" /></a></td>
 	          	</tr>
 	          	<?php

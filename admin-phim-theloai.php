@@ -1,8 +1,10 @@
 <?php
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
-    $sql = "SELECT * FROM theloai";
+    $sql = "SELECT * FROM theloaiphim,theloai WHERE theloaiphim.MaTL=theloai.MaTL and theloaiphim.MaPhim ='".$_GET['id']."'";
     $result = $conn->query($sql);
+    $sql1 = "SELECT * FROM phim WHERE MaPhim = '".$_GET['id']."'";
+    $result1 = $conn->query($sql1);
 ?>
 <head>
 	<meta charset="utf-8">
@@ -34,16 +36,25 @@
 	<div class="vertical-menu">
 		<h5>Menu</h5>
 		<ul>
-			<li><a href="admin-top.php" class="active">Phim</a></li>
-		    <li style="background: #0033ff ;"><a style="color: #fff;" href="admin-theloai.php" class="active">Thể Loại</a></li>
+			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
+		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
 		    <li><a href="#" class="active">Năm</a></li>
 		    <li><a href="#" class="active">Tài Khoản</a></li>
 		    <li><a href="#" class="active">Trang Người Dùng</a></li>
 		</ul>
 	</div>
 	<div class="main">
-		<h2>Danh sách thể loại</h2>
-		<a href="admin-add-theloai.php"><button>Thêm thể loại mới</button> </a>
+		<h2>Danh sách thể loại:</h2>
+		<?php
+	       	if ($result1 && $result1->num_rows > 0){
+	            while($row1 = $result1->fetch_assoc()){
+	  	?>
+		<h2><?php echo $row1['TenPhim']; ?></h2>
+		<?php
+			}
+		}
+		?>
+		<a href="admin-add-theloaiphim.php?id=<?php echo $_GET['id']; ?>"><button>Thêm thể loại mới</button> </a>
 			<table class="value">
 				<tr>
 					<th>Mã Thể Loại</th>
@@ -58,7 +69,7 @@
 	          	<tr>
 	          		<td><?php echo $row['MaTL']; ?></td>
 	          		<td><?php echo $row['TenTL']; ?></td>
-	          		<td><a href="admin-edit-theloai.php?id=<?php echo $row['MaTL']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>
+	          		<td><a href="#"><img src="./Image/pencil-edit-button.png" /></a></td>
 	          		<td><a href="#"><img src="./Image/rubbish-bin.png" /></a></td>
 	          	</tr>
 	          	<?php

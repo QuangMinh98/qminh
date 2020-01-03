@@ -3,8 +3,6 @@
     mysqli_query($conn,'SET NAMES UTF8');
     $sql = "select * from phim where MaPhim = '".$_GET['id']."'";
     $result = $conn->query($sql);
-    $sql1 = "select * from namsx";
-    $result1 = $conn->query($sql1);
 ?>
 <head>
 	<meta charset="utf-8">
@@ -20,20 +18,16 @@
 				console.log("thành công");
 				var id = $('#id').val();
 				var name = $('#name').val();
-				var hang = $('#hang').val();
-				var img = $('#image').val();
-				var backimg = $('#back-img').val();
-				var year = $('#year').val();
-				var review = $('#review').val();
-				var query = "update phim set TenPhim='"+name+"',Nam="+year+",HangSX='"+hang+"',NoiDung='"+review+"',Image='"+img+"',back_image='"+backimg+"' where MaPhim='"+id+"'";
-
+				var ep = $('#ep').val();
+				var link = $('#link').val();
+				var query = "insert into tapphim values(null,'"+ep+"','"+id+"','"+link+"')";
 				$.ajax({
 					url: 'update.php',
 					type: 'POST',
 					data: {query:query},
 					success:function(d){
 						alert(d);
-						window.location="admin-top.php";
+						window.location="admin-chitiet.php?id="+id;
 					},
 					error:function(){
 						alert("Bị lỗi");
@@ -71,7 +65,7 @@
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Thêm Phim Mới</h2>
+		<h2 style="margin-bottom: 50px;"> Thêm Tập Phim Mới</h2>
 		<div class="wrapper">
 			<?php
 				if ($result && $result->num_rows > 0){
@@ -81,42 +75,21 @@
 				<h6 style="float: left; margin-right:10px;">Mã Phim:</h6>
 				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaPhim']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px">Tên Phim:</h6>
-				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenPhim']; ?>">
-				<h6 style="float:left ;margin-right: 10px;">Tên Hãng Sản Xuất:</h6>
-				<input id="hang" style="float: left;" type="text" value="<?php echo $row['HangSX']; ?> ">
-			</div>
-			<div class="img">
-				<h6 style="float: left; margin-right: 10px;">Ảnh:</h6>
-				<input id="image"  style="float: left; margin-right: 10px;" type="text" value="<?php echo $row['Image']; ?> ">
-				<img style="float: left; width: 60px; height: 80px;" src="">
-				<h6 style="float: left; margin-left: 80px;">Ảnh Nền:</h6>
-				<input id="back-img" style="float: left; margin-left: 10px;" type="text"value="<?php echo $row['back_image']; ?> ">
-				<img style="float: left; margin-left: 10px; width: 80px; height: 45px;" src="">
-				<h6 style="float: left; margin-left: 80px;">Năm SX:</h6>
-				<select id="year" style="float: left; margin-left: 10px;">
-					<?php
-					if ($result1 && $result1->num_rows > 0){
-	              		while($row1 = $result1->fetch_assoc()){
-	              			if($row1['Nam'] == $row['Nam'])
-	              				echo "<option value='".$row1['Nam']."' selected>".$row1['Nam']."</option>";
-	              			else 
-	              				echo "<option value='".$row1['Nam']."'>".$row1['Nam']."</option>";
-	              		}
-	              	}
-					?>
-				</select>
-			</div> 
-			<div>
-				<h6 style="margin-left: 10%">Nội Dung: </h6>
-				<textarea id="review" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%"><?php echo $row['NoiDung']; ?></textarea>
+				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenPhim']; ?>" readonly>
 			</div>
 			<?php
 				}
 			}
 			?>
+			<div class="img">
+				<h6 style="float: left; margin-right: 10px;">Tên Tập Phim:</h6>
+				<input id="ep"  style="float: left; margin-right: 10px;" type="text" name="">
+			</div> 
+			<div>
+				<h6 style="margin-left: 10%">Link Phim: </h6>
+				<textarea id="link" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%"></textarea>
+			</div>
 			<input id="btn" type="button" name="" value="Thêm">
 		</div>
-		
-		
 	</div>
 </body>

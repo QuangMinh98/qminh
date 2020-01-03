@@ -1,7 +1,7 @@
 <?php
 	include 'top.php';
 	$sql = "SELECT * FROM tapphim WHERE MaPhim = '".$_GET['id']."'";
-	$sql1 = "SELECT * FROM tapphim WHERE MaPhim = '".$_GET['id']."' and TenTapPhim=".$_GET['ep'];
+	$sql1 = "SELECT * FROM tapphim WHERE MaPhim = '".$_GET['id']."' and TenTapPhim='".$_GET['ep']."'";
                 //run câu truy vấn
     $result = $conn->query($sql);
     $result1 = $conn->query($sql1);
@@ -34,9 +34,9 @@
         				// nếu có thì tiến hành lặp để in ra dữ liệu           
        						while ($row = $result->fetch_assoc()) {	
        							if($row['TenTapPhim']==$_GET['ep'])
-       								echo "<a href=view.php?id=".$row['MaPhim']."&ep=".$row['TenTapPhim']." class='tapphim playing'>".$row['TenTapPhim']."</a>";
+       								echo "<a href='view.php?id=".$row['MaPhim']."&ep=".$row['TenTapPhim']."' class='tapphim playing'>".$row['TenTapPhim']."</a>";
        							else
-       								echo "<a href=view.php?id=".$row['MaPhim']."&ep=".$row['TenTapPhim']." class=tapphim>".$row['TenTapPhim']."</a>";
+       								echo "<a href='view.php?id=".$row['MaPhim']."&ep=".$row['TenTapPhim']."' class=tapphim>".$row['TenTapPhim']."</a>";
        						}
        					}
 					?>

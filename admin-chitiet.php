@@ -16,8 +16,8 @@
 	<div class="vertical-menu">
 		<h5>Menu</h5>
 		<ul>
-			<li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Phim</a></li>
-		    <li><a href="#" class="active">Thể Loại</a></li>
+			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
+		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
 		    <li><a href="#" class="active">Năm</a></li>
 		    <li><a href="#" class="active">Tài Khoản</a></li>
 		    <li><a href="#" class="active">Trang Người Dùng</a></li>
@@ -25,7 +25,7 @@
 	</div>
 	<div class="main">
 		<h2>Danh sách tập phim</h2>
-		<a href="#"><button>Thêm phim mới</button> </a>
+		<a href="admin-add-ep.php?id=<?php echo $_GET['id']; ?>"><button>Thêm phim mới</button> </a>
 			<table class="value">
 				<tr>
 					<th>Mã Tập Phim</th>
@@ -42,7 +42,7 @@
 	          		<td><?php echo $row['MaTapPhim']; ?></td>
 	          		<td><?php echo $row['TenTapPhim']; ?></td>
 	          		<td><?php echo $row['link']; ?></td>
-	          		<td><a href="#"><img src="./Image/pencil-edit-button.png" /></a></td>
+	          		<td><a href="admin-edit-tapphim.php?id=<?php echo $row['MaTapPhim']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>
 	          		<td><a href="#"><img src="./Image/rubbish-bin.png" /></a></td>
 	          	</tr>
 	          	<?php
