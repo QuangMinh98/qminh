@@ -5,6 +5,16 @@
                 //run câu truy vấn
     $result = $conn->query($sql);
     $result1 = $conn->query($sql1);
+    if(isset($_SESSION['id']))
+    {
+		$sql2 ="insert into phimdangxem values('".$_SESSION['id']."','" .$_GET['id']."','".$_GET['ep']."')";
+		$result2 = $conn->query($sql2);
+		if(!$result2){
+			$sql2 ="update phimdangxem set tap ='".$_GET['ep']."' where id ='".$_SESSION['id']."' and MaPhim='".$_GET['id']."'";
+			$result2 = $conn->query($sql2);
+		}   	
+    }
+    
 ?>
 
 	<div class="container">

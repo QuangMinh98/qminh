@@ -77,7 +77,7 @@
 				<h6 style="float: left; margin-right:10px;">Tên Đăng Nhập:</h6>
 				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['id']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px">Mật Khẩu:</h6>
-				<input id="pass" style="float: left; margin-right: 80px;" value="<?php echo $row['id']; ?> "  type="text" readonly>
+				<input id="pass" style="float: left; margin-right: 80px;" value="<?php echo $row['password']; ?> "  type="text" readonly>
 			</div>
 			<?php
 				}

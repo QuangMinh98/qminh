@@ -73,7 +73,21 @@
 					</div>
 					<div class="row" style="padding: 5px 15px;">
 						<?php
-							echo "<a href=view.php?id=".$_GET['id']."&ep=01 class='btn play-now'>Xem Phim</a>";
+						    if(isset($_SESSION['id'])){
+						    	$sql2 = "SELECT * FROM phimdangxem WHERE id ='".$_SESSION['id']."' AND MaPhim='".$_GET['id']."'";
+						    	$result2 = $conn->query($sql2);
+						    	if ($result2 && $result2->num_rows > 0) {
+						        // nếu có thì tiến hành lặp để in ra dữ liệu           
+						        	while ($row2 = $result2->fetch_assoc()) {
+						        		echo "<a href=view.php?id=".$_GET['id']."&ep=01 onclick='javascript:xemtiep(".$row2['tap'].");return false;' class='btn play-now'>Xem Phim</a>";
+						        	}
+						        }
+						        else{
+						        	echo "<a href=view.php?id=".$_GET['id']."&ep=01 class='btn play-now'>Xem Phim</a>";
+						        }
+						    }
+						    else
+								echo "<a href=view.php?id=".$_GET['id']."&ep=01 class='btn play-now'>Xem Phim</a>";
 							if(isset($_SESSION['id'])){
 						?>
 						<a id="favorite" class="btn play-now">Thêm Vào DS Yêu Thích</a>
@@ -86,6 +100,22 @@
 						}
 						?>
 					</div>
+					<script type="text/javascript">
+						function xemtiep(ep){
+							if(ep<10)
+							{
+								ep="0"+ep;
+							}
+							var obj = confirm("Bạn đang dừng ở tập "+ep+",bạn có muốn xem tiếp");
+							if(obj){
+								window.location = "view.php?id=<?php echo $_GET['id'].'&ep=' ?>"+ep;
+							}
+							else
+							{
+								window.location = "view.php?id=<?php echo $_GET['id'].'&ep=01' ?>";
+							}
+						}
+					</script>
 					<div class="review">
 						<h5 style="font-weight: bold;">Nội Dung:</h5>
 						<?php
