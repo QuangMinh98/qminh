@@ -6,6 +6,7 @@
         $sql = "delete from theloaiphim where MaPhim='".$id."'";
         $sql1 = "delete from tapphim where MaPhim='".$id."'";
         $sql2 = "delete from phimyeuthich where MaPhim='".$id."'";
+        $sql4 = "delete from phimdangxem where MaPhim ='".$id."'";
         $sql3 = "delete from phim where MaPhim='".$id."'";
         $result = $conn->query($sql);
         $result1 = $conn->query($sql1);
@@ -37,12 +38,22 @@
     }
     if(isset($_POST['nam'])){
         $id = $_POST['nam'];
-        $sql1 = "delete from phim where Nam ='".$id."'";
+        $sql1 = "select * from phim where Nam =".$id;
         $result1 = $conn->query($sql1);
-        $sql2 = "delete from tapphim where MaPhim='".$id."'";
-        $result2 = $conn->query($sql2);
-        $sql3 = "delete from phimyeuthich where MaPhim='".$id."'";
-        $result3 = $conn->query($sql3);
+         if ($result1 && $result1->num_rows > 0) {               
+                while ($row1 = $result1->fetch_assoc()) {
+                    $sql3 ="delete from tapphim where MaPhim='".$row1['MaPhim']."'";
+                    $result3 = $conn->query($sql3);
+                    $sql4 = "delete from theloaiphim where MaPhim ='".$row1['MaPhim']."'";
+                    $result4 = $conn->query($sql4);
+                    $sql5 = "delete from phimyeuthich where MaPhim ='".$row1['MaPhim']."'";
+                    $result5 = $conn->query($sql5);
+                    $sql6 = "delete from phimdangxem where MaPhim ='".$row1['MaPhim']."'";
+                    $result6 = $conn->query($sql6);
+                }
+            }
+        $sql2 = "delete from phim where Nam =".$id;
+        $result2 = $conn->query($sql2);        
         $sql = "delete from namsx where Nam =".$id;
         $result = $conn->query($sql);
         echo "Xóa thành công";
