@@ -54,14 +54,37 @@
 						?>
 					</div>
 					<div class="row" style="padding: 5px 15px;">
+						<?php
+							if($row['TinhTrang']=='Hoàn Thành')
+							{
+
+						?>
 						<h5>Tình Trạng : </h5>
-						<h5><a href="#"><?php echo $row['TinhTrang']; ?></a></h5>
+						<h5><a href="tinhtrangphim.php?tinhtrang=1"><?php echo $row['TinhTrang']; ?></a></h5>
+						<?php
+							}
+							else{
+						?>
+						<h5>Tình Trạng : </h5>
+						<h5><a href="tinhtrangphim.php?tinhtrang=0"><?php echo $row['TinhTrang']; ?></a></h5>
+						<?php
+							}
+						?>
 					</div>
 					<div class="row" style="padding: 5px 15px;">
 						<?php
-							echo "<a href=view.php?id=".$_GET['id']."&ep=01 class='btn play-now'>Xem Phim</a>";	
+							echo "<a href=view.php?id=".$_GET['id']."&ep=01 class='btn play-now'>Xem Phim</a>";
+							if(isset($_SESSION['id'])){
 						?>
-						<a href="#" class="btn play-now">Thêm Vào DS Yêu Thích</a>
+						<a id="favorite" class="btn play-now">Thêm Vào DS Yêu Thích</a>
+						<?php
+							}
+							else{
+						?>
+						<a class="btn play-now" onclick="javascript:login();return false;">Thêm Vào DS Yêu Thích</a>
+						<?php
+						}
+						?>
 					</div>
 					<div class="review">
 						<h5 style="font-weight: bold;">Nội Dung:</h5>

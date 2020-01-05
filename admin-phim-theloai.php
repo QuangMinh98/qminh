@@ -1,10 +1,15 @@
 <?php
+	session_start();
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
     $sql = "SELECT * FROM theloaiphim,theloai WHERE theloaiphim.MaTL=theloai.MaTL and theloaiphim.MaPhim ='".$_GET['id']."'";
     $result = $conn->query($sql);
     $sql1 = "SELECT * FROM phim WHERE MaPhim = '".$_GET['id']."'";
     $result1 = $conn->query($sql1);
+    if($_SESSION['id'] != 'admin')
+    {
+    	header('Location: http://localhost:8888/qminh/login.php');
+    }
 ?>
 <head>
 	<meta charset="utf-8">
@@ -38,9 +43,10 @@
 		<ul>
 			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
 		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="#" class="active">Năm</a></li>
-		    <li><a href="#" class="active">Tài Khoản</a></li>
-		    <li><a href="#" class="active">Trang Người Dùng</a></li>
+		    <li><a href="admin-nam.php" class="active">Năm</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
+		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
+		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">
@@ -59,7 +65,6 @@
 				<tr>
 					<th>Mã Thể Loại</th>
 					<th>Tên Thể Loại</th>
-					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
 				<?php
@@ -69,8 +74,7 @@
 	          	<tr>
 	          		<td><?php echo $row['MaTL']; ?></td>
 	          		<td><?php echo $row['TenTL']; ?></td>
-	          		<td><a href="#"><img src="./Image/pencil-edit-button.png" /></a></td>
-	          		<td><a href="#"><img src="./Image/rubbish-bin.png" /></a></td>
+	          		<td><a id="delete" href="admin-delete-theloaiphim.php?id=<?php echo $_GET['id']; ?>&tl=<?php echo $row['MaTL']; ?>"><img src="./Image/rubbish-bin.png" /></a></td>
 	          	</tr>
 	          	<?php
 			          	}

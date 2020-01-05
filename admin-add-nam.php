@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if($_SESSION['id'] != 'admin')
+    {
+    	header('Location: http://localhost:8888/qminh/login.php');
+    }
+?>
 <head>
 	<meta charset="utf-8">
 	<title>Thế giới phim truyện</title>
@@ -49,15 +56,16 @@
 	<div class="vertical-menu">
 		<h5>Menu</h5>
 		<ul>
-			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
+			<li><a href="admin-top.php" class="active">Phim</a></li>
 		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="#" class="active">Năm</a></li>
-		    <li><a href="#" class="active">Tài Khoản</a></li>
-		    <li><a href="#" class="active">Trang Người Dùng</a></li>
+		    <li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Năm</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
+		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
+		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Thêm Năm</h2>
+		<h2 style="margin-bottom: 50px;"> Thêm năm sảm xuất</h2>
 		<div class="wrapper">
 			<div class="info">
 				<h6 style="float: left; margin-right:10px;">Năm:</h6>

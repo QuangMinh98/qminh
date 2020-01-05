@@ -21,15 +21,12 @@
 		$(document).ready(function(){
 			$('#btn').click(function(){
 				console.log("thành công");
+				var ep = $('#MaTP').val();
 				var id = $('#id').val();
-				var MaTP = $('#MaTP').val();
-				var ep = $('#ep').val();
-				var link = $('#link').val();
-				var query = "update tapphim set TenTapPhim='"+ep+"', link='"+link+"' where MaTapPhim='"+MaTP+"'";
 				$.ajax({
-					url: 'update.php',
+					url: 'admin-delete.php',
 					type: 'POST',
-					data: {query:query},
+					data: {ep:ep},
 					success:function(d){
 						alert(d);
 						window.location="admin-chitiet.php?id="+id;
@@ -95,17 +92,18 @@
 			?>
 			<div class="img">
 				<h6 style="float: left; margin-right: 10px;">Tên Tập Phim:</h6>
-				<input id="ep"  style="float: left; margin-right: 10px;" type="text" value="<?php echo $row['TenTapPhim']; ?> ">
+				<input id="ep"  style="float: left; margin-right: 10px;" type="text" value="<?php echo $row['TenTapPhim']; ?> " readonly>
 			</div> 
 			<div>
 				<h6 style="margin-left: 10%">Link Phim: </h6>
-				<textarea id="link" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%" ><?php echo $row['link']; ?></textarea>
+				<textarea id="link" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%" readonly ><?php echo $row['link']; ?></textarea>
 			</div>
 			<?php
 				}
 			}
 			?>
-			<input id="btn" type="button" name="" value="Thêm">
+			<input id="btn" type="button" name="" value="Xóa">
+			<input id="btn1" type="button" name="" value="Hủy">
 		</div>
 	</div>
 </body>

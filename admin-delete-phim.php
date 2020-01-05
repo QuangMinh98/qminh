@@ -24,19 +24,10 @@
 			$('#btn').click(function(){
 				console.log("thành công");
 				var id = $('#id').val();
-				var name = $('#name').val();
-				var hang = $('#hang').val();
-				var img = $('#image').val();
-				var backimg = $('#back-img').val();
-				var year = $('#year').val();
-				var review = $('#review').val();
-				var status = $('#tinhtrang').val();
-				var query = "update phim set TenPhim='"+name+"',Nam="+year+",HangSX='"+hang+"',NoiDung='"+review+"',Image='"+img+"',back_image='"+backimg+"',TinhTrang='"+status+"' where MaPhim='"+id+"'";
-
 				$.ajax({
-					url: 'update.php',
+					url: 'admin-delete.php',
 					type: 'POST',
-					data: {query:query},
+					data: {id:id},
 					success:function(d){
 						alert(d);
 						window.location="admin-top.php";
@@ -78,7 +69,7 @@
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Chỉnh Sửa Phim</h2>
+		<h2 style="margin-bottom: 50px;"> Xóa Phim</h2>
 		<div class="wrapper">
 			<?php
 				if ($result && $result->num_rows > 0){
@@ -88,21 +79,21 @@
 				<h6 style="float: left; margin-right:10px;">Mã Phim:</h6>
 				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaPhim']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px">Tên Phim:</h6>
-				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenPhim']; ?>">
+				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenPhim']; ?>" readonly>
 				<h6 style="float:left ;margin-right: 10px;">Tên Hãng Sản Xuất:</h6>
-				<input id="hang" style="float: left;" type="text" value="<?php echo $row['HangSX']; ?> ">
+				<input id="hang" style="float: left;" type="text" value="<?php echo $row['HangSX']; ?> " readonly>
 			</div>
 			<div class="img">
 				<h6 style="float: left; margin-right: 10px;">Ảnh:</h6>
-				<input id="image"  style="float: left; margin-right: 10px;" type="text" value="<?php echo $row['Image']; ?> ">
-				<img style="float: left; width: 60px; height: 80px;" src="">
+				<input id="image"  style="float: left; margin-right: 10px;" type="text" value="<?php echo $row['Image']; ?> " readonly>
+				<img style="float: left; width: 60px; height: 80px;" src="" readonly>
 				<h6 style="float: left; margin-left: 80px;">Ảnh Nền:</h6>
-				<input id="back-img" style="float: left; margin-left: 10px;" type="text"value="<?php echo $row['back_image']; ?> ">
+				<input id="back-img" style="float: left; margin-left: 10px;" type="text"value="<?php echo $row['back_image']; ?> " readonly>
 				<img style="float: left; margin-left: 10px; width: 80px; height: 45px;" src="">
 			</div>
 			<div class="select">
 				<h6 style="float: left; margin-right: 10px;">Năm SX:</h6>
-				<select id="year" style="float: left; margin-right: 80px;">
+				<select id="year" style="float: left; margin-right: 80px;" readonly>
 					<?php
 					if ($result1 && $result1->num_rows > 0){
 	              		while($row1 = $result1->fetch_assoc()){
@@ -115,7 +106,7 @@
 					?>
 				</select>
 				<h6 style="float: left; margin-right: 10px;">Tình Trạng:</h6>
-				<select id="tinhtrang" style="margin-right: 10px;">
+				<select id="tinhtrang" style="margin-right: 10px;" readonly>
 					<?php
 						if($row['TinhTrang'] == "Hoàn Thành")
 	              				echo "<option value='Hoàn Thành' selected>Hoàn Thành</option>
@@ -128,13 +119,14 @@
 			</div> 
 			<div>
 				<h6 style="margin-left: 10%">Nội Dung: </h6>
-				<textarea id="review" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%"><?php echo $row['NoiDung']; ?></textarea>
+				<textarea id="review" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%" readonly><?php echo $row['NoiDung'];  ?></textarea>
 			</div>
 			<?php
 				}
 			}
 			?>
-			<input id="btn" type="button" name="" value="Thêm">
+			<input id="btn" type="button" name="" value="Xóa">
+			<a href="admin-top.php"><input style="background: red;" type="button" name="" value="Hủy"></a>
 		</div>
 		
 		

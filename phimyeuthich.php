@@ -9,7 +9,7 @@
             </div>
 			<div class="row">
                 <?php
-                $sql = "SELECT * FROM phim ORDER BY TenPhim";
+                $sql = "SELECT * FROM phimyeuthich,phim WHERE phimyeuthich.MaPhim=phim.MaPhim and phimyeuthich.id = '".$_SESSION['id']."' ORDER BY TenPhim";
                 $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0) {               
                     while ($row = $result->fetch_assoc()) {

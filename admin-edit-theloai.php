@@ -1,8 +1,13 @@
 <?php
+	session_start();
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
     $sql = "select * from theloai where MaTL = '".$_GET['id']."'";
     $result = $conn->query($sql);
+    if($_SESSION['id'] != 'admin')
+    {
+    	header('Location: http://localhost:8888/qminh/login.php');
+    }
 ?>
 <head>
 	<meta charset="utf-8">
@@ -55,11 +60,12 @@
 	<div class="vertical-menu">
 		<h5>Menu</h5>
 		<ul>
-			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
-		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="#" class="active">Năm</a></li>
-		    <li><a href="#" class="active">Tài Khoản</a></li>
-		    <li><a href="#" class="active">Trang Người Dùng</a></li>
+			<li><a href="admin-top.php" class="active">Phim</a></li>
+		    <li style="background: #0033ff ;"><a style="color: #fff;" href="admin-theloai.php" class="active">Thể Loại</a></li>
+		    <li><a href="admin-nam.php" class="active">Năm</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
+		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
+		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">

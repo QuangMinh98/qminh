@@ -87,8 +87,9 @@ a:hover{
     background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 11px center;
     border: solid 1px #ccc;
     padding: 9px 10px 9px 32px;
-    width: 55px;
-    
+    width: 230px;
+    background-color: #fff;
+    border-color: #66CC75;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
@@ -97,7 +98,7 @@ a:hover{
     -moz-transition: all .5s;
     transition: all .5s;
 }
-.menu input[type=search]:focus {
+/*.menu input[type=search]:focus {
     width: 230px;
     background-color: #fff;
     border-color: #66CC75;
@@ -105,8 +106,11 @@ a:hover{
     -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
     -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
     box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
+}*/
 
+.menu a{
+	margin-top :20px;
+}
 
 .menu input:-moz-placeholder {
     color: #999;
@@ -116,21 +120,23 @@ a:hover{
 }
 
 #demo-2 input[type=search] {
-    width: 23px;
-    padding-left: 10px;
+    width: 300px;
+    padding-left: 32px;
     color: transparent;
-    cursor: pointer;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
 }
 #demo-2 input[type=search]:hover {
     background-color: #fff;
 }
-#demo-2 input[type=search]:focus {
+/*#demo-2 input[type=search]:focus {
     width: 300px;
     padding-left: 32px;
     color: #000;
     background-color: #fff;
     cursor: auto;
-}
+}*/
 #demo-2 input:-moz-placeholder {
     color: transparent;
 }

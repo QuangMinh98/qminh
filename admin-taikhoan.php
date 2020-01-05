@@ -1,8 +1,13 @@
 <?php
+	session_start();
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
     $sql = "SELECT * FROM taikhoan";
     $result = $conn->query($sql);
+    if($_SESSION['id'] != 'admin')
+    {
+    	header('Location: http://localhost:8888/qminh/login.php');
+    }
 ?>
 <head>
 	<meta charset="utf-8">
@@ -36,9 +41,10 @@
 		<ul>
 			<li><a href="admin-top.php" class="active">Phim</a></li>
 		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="#" class="active">Năm</a></li>
+		    <li><a href="admin-nam.php" class="active">Năm</a></li>
 		    <li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Tài Khoản</a></li>
-		    <li><a href="#" class="active">Trang Người Dùng</a></li>
+		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
+		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">
@@ -59,7 +65,7 @@
 	          		<td><?php echo $row['id']; ?></td>
 	          		<td><?php echo $row['password']; ?></td>
 	          		<td><a href="admin-doimatkhau.php?id=<?php echo $row['id']; ?>"><img src="./Image/pencil-edit-button.png" /></a></td>
-	          		<td><a href="#"><img src="./Image/rubbish-bin.png" /></a></td>
+	          		<td><a href="admin-delete-taikhoan.php?id=<?php echo $row['id']; ?>"><img src="./Image/rubbish-bin.png" /></a></td>
 	          	</tr>
 	          	<?php
 			          	}

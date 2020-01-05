@@ -1,9 +1,13 @@
 <?php
 	session_start();
+	$conn = new mysqli('localhost','root','','XemPhim');
+    mysqli_query($conn,'SET NAMES UTF8');
 	if($_SESSION['id'] != 'admin')
     {
     	header('Location: http://localhost:8888/qminh/login.php');
     }
+    $sql = "SELECT * FROM namsx where Nam =".$_GET['id'];
+    $result = $conn->query($sql);
 ?>
 <head>
 	<meta charset="utf-8">
@@ -17,17 +21,14 @@
 		$(document).ready(function(){
 			$('#btn').click(function(){
 				console.log("thành công");
-				var id = $('#id').val();
-				var pass = $('#pass').val();
-				var query = "insert into taikhoan values('"+id+"','"+pass+"')";
-				var test = "select count(*) as SoLuong from taikhoan where id = '"+id+"'";
+				var nam = $('#id').val();
 				$.ajax({
-					url: 'insert.php',
+					url: 'admin-delete.php',
 					type: 'POST',
-					data: {query:query,test:test},
+					data: {nam:nam},
 					success:function(d){
 						alert(d);
-						window.location="admin-taikhoan.php";
+						window.location="admin-nam.php";
 					},
 					error:function(){
 						alert("Bị lỗi");
@@ -59,22 +60,30 @@
 		<ul>
 			<li><a href="admin-top.php" class="active">Phim</a></li>
 		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="admin-nam.php" class="active">Năm</a></li>
-		    <li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Tài Khoản</a></li>
+		    <li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Năm</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
 		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
 		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Thêm Tài Khoản Mới</h2>
+		<h2 style="margin-bottom: 50px;">Xóa năm sản xuất</h2>
 		<div class="wrapper">
 			<div class="info">
-				<h6 style="float: left; margin-right:10px;">Tên Đăng Nhập:</h6>
-				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text">
-				<h6 style="float: left; margin-right:10px">Mật Khẩu:</h6>
-				<input id="pass" style="float: left; margin-right: 80px;" type="text" >
+				<h6 style="float: left; margin-right:10px;">Năm:</h6>
+				<?php
+					if ($result && $result->num_rows > 0) {
+			        // nếu có thì tiến hành lặp để in ra dữ liệu           
+				        while ($row = $result->fetch_assoc()) {
+	        	?>
+				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['Nam']; ?>" readonly>
+				<?php
+					}
+				}
+				?>
 			</div>
-			<input id="btn" type="button" name="" value="Thêm">
+			<input id="btn" type="button" name="" value="Xóa">
+			<a href="admin-nam.php"><input type="button" name="" value="Hủy"></a>
 		</div>
 	</div>
 </body>

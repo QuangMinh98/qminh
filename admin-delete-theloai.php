@@ -1,6 +1,10 @@
 <?php
 	session_start();
-	if($_SESSION['id'] != 'admin')
+	$conn = new mysqli('localhost','root','','XemPhim');
+    mysqli_query($conn,'SET NAMES UTF8');
+    $sql = "select * from theloai where MaTL = '".$_GET['id']."'";
+    $result = $conn->query($sql);
+    if($_SESSION['id'] != 'admin')
     {
     	header('Location: http://localhost:8888/qminh/login.php');
     }
@@ -17,17 +21,14 @@
 		$(document).ready(function(){
 			$('#btn').click(function(){
 				console.log("thành công");
-				var id = $('#id').val();
-				var pass = $('#pass').val();
-				var query = "insert into taikhoan values('"+id+"','"+pass+"')";
-				var test = "select count(*) as SoLuong from taikhoan where id = '"+id+"'";
+				var TL = $('#id').val();
 				$.ajax({
-					url: 'insert.php',
+					url: 'admin-delete.php',
 					type: 'POST',
-					data: {query:query,test:test},
+					data: {TL:TL},
 					success:function(d){
 						alert(d);
-						window.location="admin-taikhoan.php";
+						window.location="admin-theloai.php";
 					},
 					error:function(){
 						alert("Bị lỗi");
@@ -58,23 +59,34 @@
 		<h5>Menu</h5>
 		<ul>
 			<li><a href="admin-top.php" class="active">Phim</a></li>
-		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
+		    <li style="background: #0033ff ;"><a style="color: #fff;" href="admin-theloai.php" class="active">Thể Loại</a></li>
 		    <li><a href="admin-nam.php" class="active">Năm</a></li>
-		    <li style="background: #0033ff ;"><a style="color: #fff;" href="#" class="active">Tài Khoản</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
 		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
 		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Thêm Tài Khoản Mới</h2>
+		<h2 style="margin-bottom: 50px;"> Xóa thể loại</h2>
 		<div class="wrapper">
+			<?php
+				if ($result && $result->num_rows > 0){
+	              while($row = $result->fetch_assoc()){
+			?>
 			<div class="info">
-				<h6 style="float: left; margin-right:10px;">Tên Đăng Nhập:</h6>
-				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text">
-				<h6 style="float: left; margin-right:10px">Mật Khẩu:</h6>
-				<input id="pass" style="float: left; margin-right: 80px;" type="text" >
+				<h6 style="float: left; margin-right:10px;">Mã Phim:</h6>
+				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaTL']; ?> " readonly>
+				<h6 style="float: left; margin-right:10px">Tên Phim:</h6>
+				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenTL']; ?>" readonly>
 			</div>
-			<input id="btn" type="button" name="" value="Thêm">
+			<?php
+				}
+			}
+			?>
+			<input id="btn" type="button" name="" value="Xóa">
+			<a href="admin-theloai.php"><input type="button" name="" value="Hủy"></a>
 		</div>
+		
+		
 	</div>
 </body>

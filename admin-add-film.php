@@ -1,8 +1,13 @@
 <?php
+	session_start();
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
     $sql1 = "select * from namsx";
     $result1 = $conn->query($sql1);
+    if($_SESSION['id'] != 'admin')
+    {
+    	header('Location: http://localhost:8888/qminh/login.php');
+    }
 ?>
 <head>
 	<meta charset="utf-8">
@@ -63,9 +68,10 @@
 		<ul>
 			<li style="background: #0033ff ;"><a style="color: #fff;" href="admin-top.php" class="active">Phim</a></li>
 		    <li><a href="admin-theloai.php" class="active">Thể Loại</a></li>
-		    <li><a href="#" class="active">Năm</a></li>
-		    <li><a href="#" class="active">Tài Khoản</a></li>
-		    <li><a href="#" class="active">Trang Người Dùng</a></li>
+		    <li><a href="admin-nam.php" class="active">Năm</a></li>
+		    <li><a href="admin-taikhoan.php" class="active">Tài Khoản</a></li>
+		    <li><a href="index.php" class="active">Trang Người Dùng</a></li>
+		    <li><a href="logout.php">Đăng Xuất</a></li>
 		</ul>
 	</div>
 	<div class="main">

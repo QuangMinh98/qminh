@@ -2,7 +2,7 @@
 	session_start();
 	$conn = new mysqli('localhost','root','','XemPhim');
     mysqli_query($conn,'SET NAMES UTF8');
-    $sql = "select * from tapphim where MaTapPhim = '".$_GET['id']."'";
+    $sql = "select * from phim,theloaiphim,theloai where phim.MaPhim=theloaiphim.MaPhim and theloaiphim.MaTL=theloai.MaTL and  theloaiphim.MaPhim = '".$_GET['id']."' and theloaiphim.MaTL='".$_GET['tl']."'";
     $result = $conn->query($sql);
     if($_SESSION['id'] != 'admin')
     {
@@ -21,18 +21,15 @@
 		$(document).ready(function(){
 			$('#btn').click(function(){
 				console.log("thành công");
-				var id = $('#id').val();
-				var MaTP = $('#MaTP').val();
-				var ep = $('#ep').val();
-				var link = $('#link').val();
-				var query = "update tapphim set TenTapPhim='"+ep+"', link='"+link+"' where MaTapPhim='"+MaTP+"'";
+				var MaPhim = $('#id').val();
+				var MaTL = $('#tl').val();
 				$.ajax({
-					url: 'update.php',
+					url: 'admin-delete.php',
 					type: 'POST',
-					data: {query:query},
+					data: {MaPhim:MaPhim,MaTL:MaTL},
 					success:function(d){
 						alert(d);
-						window.location="admin-chitiet.php?id="+id;
+						window.location="admin-phim-theloai.php?id="+MaPhim;
 					},
 					error:function(){
 						alert("Bị lỗi");
@@ -71,41 +68,30 @@
 		</ul>
 	</div>
 	<div class="main">
-		<h2 style="margin-bottom: 50px;"> Sửa Tập Phim</h2>
+		<h2 style="margin-bottom: 50px;"> Xóa Thể Loại Phim</h2>
 		<div class="wrapper">
 			<?php
-			if ($result && $result->num_rows > 0){
-	             while($row = $result->fetch_assoc()){
-	             	$sql1 = "select * from phim where MaPhim='".$row['MaPhim']."'";
-	             	$result1 = $conn->query($sql1);
-					if ($result1 && $result1->num_rows > 0){
-		             	while($row1 = $result1->fetch_assoc()){
+				if ($result && $result->num_rows > 0){
+	              while($row = $result->fetch_assoc()){
 			?>
 			<div class="info">
-				<h6 style="float: left; margin-right:10px;">Mã Tập Phim:</h6>
-				<input id="MaTP" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaTapPhim']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px;">Mã Phim:</h6>
-				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row1['MaPhim']; ?> " readonly>
+				<input id="id" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaPhim']; ?> " readonly>
 				<h6 style="float: left; margin-right:10px">Tên Phim:</h6>
-				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row1['TenPhim']; ?>" readonly>
+				<input id="name" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenPhim']; ?>" readonly>
 			</div>
-			<?php
-				}
-			}
-			?>
 			<div class="img">
-				<h6 style="float: left; margin-right: 10px;">Tên Tập Phim:</h6>
-				<input id="ep"  style="float: left; margin-right: 10px;" type="text" value="<?php echo $row['TenTapPhim']; ?> ">
+				<h6 style="float: left; margin-right:10px;">Mã Thể Loại:</h6>
+				<input id="tl" style="float: left; margin-right:80px; width: 100px;" type="text" value="<?php echo $row['MaTL']; ?> " readonly>
+				<h6 style="float: left; margin-right:10px">Thể Loại:</h6>
+				<input id="tentl" style="float: left; margin-right: 80px;" type="text" value="<?php echo $row['TenTL']; ?>" readonly>
 			</div> 
-			<div>
-				<h6 style="margin-left: 10%">Link Phim: </h6>
-				<textarea id="link" style="width: 50%; height: 30%; overflow: scroll; margin-left: 10%" ><?php echo $row['link']; ?></textarea>
-			</div>
 			<?php
 				}
 			}
 			?>
-			<input id="btn" type="button" name="" value="Thêm">
+			<input id="btn" type="button" name="" value="Xóa">
+			<input id="btn" type="button" name="" value="Hủy">
 		</div>
 	</div>
 </body>

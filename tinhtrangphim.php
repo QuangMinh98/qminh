@@ -9,7 +9,12 @@
             </div>
 			<div class="row">
                 <?php
-                $sql = "SELECT * FROM phim ORDER BY TenPhim";
+                if($_GET['tinhtrang']==0){
+                    $sql = "SELECT * FROM phim WHERE TinhTrang = 'Đang Tiến Hành' ORDER BY TenPhim";
+                }
+                if($_GET['tinhtrang']==1){
+                    $sql = "SELECT * FROM phim WHERE TinhTrang = 'Hoàn Thành' ORDER BY TenPhim";
+                }
                 $result = $conn->query($sql);
                 if ($result && $result->num_rows > 0) {               
                     while ($row = $result->fetch_assoc()) {
