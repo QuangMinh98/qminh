@@ -26,6 +26,10 @@
                     echo 'Không thành công. Lỗi' . $conn->error;
                 $conn->close();
                 ?>
-		</div>
+		    </div>
+        </div>
+        <?php
+        include 'bottom.php';
+        ?>
 	</div>
 </body>

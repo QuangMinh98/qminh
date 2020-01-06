@@ -26,6 +26,10 @@
                     echo 'Không có phim tồn tại' . $conn->error;
                 $conn->close();
                 ?>
+            </div>
 		</div>
+        <?php
+        include 'bottom.php';
+        ?>
 	</div>
 </body>

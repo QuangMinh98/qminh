@@ -394,7 +394,11 @@ iframe{
 	font-weight: bold;
 }
 
-
+.footer{
+	background-color: #000000;
+    color: #fff;
+    box-shadow: 0 -7px 40px -7px #fff;
+}
 
 
 
