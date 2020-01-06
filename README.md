@@ -83,3 +83,25 @@
 
 # IV. Một số hình ảnh của website.
 
+* Trang chủ:
+
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/index.png)
+
+* Trang thông tin chi tiết phim:
+
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/detail1.png)
+
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/detail2.png)
+
+* Trang xem phim:
+
+![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/view.png)
+
+# V. Thành viên nhóm.
+* Đỗ Quang Minh:
+* Lý Thị Bích Liên:
+
+
+
+
+
