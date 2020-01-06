@@ -98,8 +98,14 @@
 ![Atom](https://github.com/QuangMinh98/qminh/blob/master/anh/view.png)
 
 # V. Thành viên nhóm.
+
 * Đỗ Quang Minh:
 * Lý Thị Bích Liên:
+
+# VI. Hướng phát triển cho bài toán.
+
+* Phát triển giao diện chạy trên các thiết bị di động.
+* Thay đổi giao diện xem video đẹp hơn.
 
 
 
